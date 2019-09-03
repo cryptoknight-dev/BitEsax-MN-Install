@@ -28,9 +28,9 @@ sudo free
 sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
 cd
 
-wget https://github.com/guapcrypto/Guapcoin/releases/download/1.0.0/guapcoin-1.0.0-x86_64-linux-gnu.tar.gz
-tar -xzf guapcoin-1.0.0-x86_64-linux-gnu.tar.gz
-rm -rf guapcoin-1.0.0-x86_64-linux-gnu.tar.gz
+wget https://github.com/escortcrypto/EscortCoin/releases/download/1.0.0/escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
+tar -xzf escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
+rm -rf escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
 
 sudo apt-get install -y ufw
 sudo ufw allow ssh/tcp
@@ -38,32 +38,32 @@ sudo ufw limit ssh/tcp
 sudo ufw logging on
 echo "y" | sudo ufw enable
 sudo ufw status
-sudo ufw allow 9633/tcp
+sudo ufw allow 9696/tcp
   
 cd
-mkdir -p .guapcoin
-echo "staking=1" >> guapcoin.conf
-echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> guapcoin.conf
-echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> guapcoin.conf
-echo "rpcallowip=127.0.0.1" >> guapcoin.conf
-echo "listen=1" >> guapcoin.conf
-echo "server=1" >> guapcoin.conf
-echo "daemon=1" >> guapcoin.conf
-echo "logtimestamps=1" >> guapcoin.conf
-echo "maxconnections=256" >> guapcoin.conf
-echo "addnode=159.65.221.180" >> guapcoin.conf
-echo "addnode=165.227.192.223" >> guapcoin.conf
-echo "addnode=159.65.217.114" >> guapcoin.conf
-echo "addnode=165.227.83.244" >> guapcoin.conf
-echo "port=9633" >> guapcoin.conf
-mv guapcoin.conf .guapcoin
+mkdir -p .escortcoin
+echo "staking=1" >> escortcoin.conf
+echo "rpcuser=user"`shuf -i 50000-5000000 -n 1` >> escortcoin.conf
+echo "rpcpassword=pass"`shuf -i 50000-5000000 -n 1` >> escortcoin.conf
+echo "rpcallowip=127.0.0.1" >> escortcoin.conf
+echo "listen=1" >> escortcoin.conf
+echo "server=1" >> escortcoin.conf
+echo "daemon=1" >> escortcoin.conf
+echo "logtimestamps=1" >> escortcoin.conf
+echo "maxconnections=256" >> escortcoin.conf
+echo "addnode=209.250.244.53" >> escortcoin.conf
+echo "addnode=95.179.155.106" >> escortcoin.conf
+echo "addnode=78.141.208.245" >> escortcoin.conf
+echo "addnode=45.63.41.19" >> escortcoin.conf
+echo "port=9696" >> escortcoin.conf
+mv escortcoin.conf .escortcoin
 
   
 cd
-./guapcoind -daemon
+./escortcoind -daemon
 sleep 30
-./guapcoin-cli getinfo
+./escortcoin-cli getinfo
 sleep 5
-./guapcoin-cli getnewaddress
-echo "Use the address above to send your GUAP coins to this server"
+./escortcoin-cli getnewaddress
+echo "Use the address above to send your EAPC coins to this server"
 

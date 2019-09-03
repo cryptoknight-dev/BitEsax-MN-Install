@@ -55,7 +55,7 @@ case $key in
     -h|--help)
     cat << EOL
 
-GUAP Masternode installer arguments:
+EAPC Masternode installer arguments:
 
     -n --normal               : Run installer in normal mode
     -a --advanced             : Run installer in advanced mode
@@ -82,9 +82,9 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 clear
 
-# Set these to change the version of guapcoin to install
-TARBALLURL="https://github.com/guapcrypto/Guapcoin/releases/download/1.0.0/guapcoin-1.0.0-x86_64-linux-gnu.tar.gz"
-TARBALLNAME="guapcoin-1.0.0-x86_64-linux-gnu.tar.gz"
+# Set these to change the version of escortcoin to install
+TARBALLURL="https://github.com/escortcrypto/EscortCoin/releases/download/1.0.0/escortcoin-1.0.0-x86_64-linux-gnu.tar.gz"
+TARBALLNAME="escortcoin-1.0.0-x86_64-linux-gnu.tar.gz"
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
@@ -131,7 +131,7 @@ echo "
  |               installation method.               |::
  |                                                  |::
  |  Otherwise, your masternode will not work, and   |::
- | the GUAP Team CANNOT assist you in repairing  |::
+ | the EAPC Team CANNOT assist you in repairing  |::
  |         it. You will have to start over.         |::
  |                                                  |::
  +------------------------------------------------+::
@@ -148,13 +148,13 @@ fi
 
 if [[ ("$ADVANCED" == "y" || "$ADVANCED" == "Y") ]]; then
 
-USER=guapcoin
+USER=escortcoin
 
 adduser $USER --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password > /dev/null
 
 INSTALLERUSED="#Used Advanced Install"
 
-echo "" && echo 'Added user "guapcoin"' && echo ""
+echo "" && echo 'Added user "escortcoin"' && echo ""
 sleep 1
 
 else
@@ -216,30 +216,30 @@ if [[ ("$UFW" == "y" || "$UFW" == "Y" || "$UFW" == "") ]]; then
   ufw default deny incoming
   ufw default allow outgoing
   ufw allow ssh
-  ufw allow 9633/tcp
+  ufw allow 9696/tcp
   yes | ufw enable
 fi
 
-# Install GUAP daemon
+# Install EAPC daemon
 wget $TARBALLURL
 tar -xzvf $TARBALLNAME 
 rm $TARBALLNAME
-mv ./guapcoind /usr/local/bin
-mv ./guapcoin-cli /usr/local/bin
-mv ./guapcoin-tx /usr/local/bin
+mv ./escortcoind /usr/local/bin
+mv ./escortcoin-cli /usr/local/bin
+mv ./escortcoin-tx /usr/local/bin
 rm -rf $TARBALLNAME
 
-# Create .guapcoin directory
-mkdir $USERHOME/.guapcoin
+# Create .escortcoin directory
+mkdir $USERHOME/.escortcoin
 
 # Install bootstrap file
 if [[ ("$BOOTSTRAP" == "y" || "$BOOTSTRAP" == "Y" || "$BOOTSTRAP" == "") ]]; then
   echo "skipping"
 fi
 
-# Create guapcoin.conf
-touch $USERHOME/.guapcoin/guapcoin.conf
-cat > $USERHOME/.guapcoin/guapcoin.conf << EOL
+# Create escortcoin.conf
+touch $USERHOME/.escortcoin/escortcoin.conf
+cat > $USERHOME/.escortcoin/escortcoin.conf << EOL
 ${INSTALLERUSED}
 rpcuser=${RPCUSER}
 rpcpassword=${RPCPASSWORD}
@@ -251,36 +251,36 @@ staking=1
 logtimestamps=1
 maxconnections=256
 externalip=${IP}
-bind=${IP}:9633
+bind=${IP}:9696
 masternodeaddr=${IP}
 masternodeprivkey=${KEY}
 masternode=1
-addnode=159.65.221.180
-addnode=165.227.192.223
-addnode=159.65.217.114
-addnode=165.227.83.244
+addnode=209.250.244.53
+addnode=95.179.155.106
+addnode=78.141.208.245
+addnode=45.63.41.19
 EOL
-chmod 0600 $USERHOME/.guapcoin/guapcoin.conf
-chown -R $USER:$USER $USERHOME/.guapcoin
+chmod 0600 $USERHOME/.escortcoin/escortcoin.conf
+chown -R $USER:$USER $USERHOME/.escortcoin
 
 sleep 1
 
-cat > /etc/systemd/system/guapcoin.service << EOL
+cat > /etc/systemd/system/escortcoin.service << EOL
 [Unit]
-Description=guapcoind
+Description=escortcoind
 After=network.target
 [Service]
 Type=forking
 User=${USER}
 WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/guapcoind -conf=${USERHOME}/.guapcoin/guapcoin.conf -datadir=${USERHOME}/.guapcoin
-ExecStop=/usr/local/bin/guapcoin-cli -conf=${USERHOME}/.guapcoin/guapcoin.conf -datadir=${USERHOME}/.guapcoin stop
+ExecStart=/usr/local/bin/escortcoind -conf=${USERHOME}/.escortcoin/escortcoin.conf -datadir=${USERHOME}/.escortcoin
+ExecStop=/usr/local/bin/escortcoin-cli -conf=${USERHOME}/.escortcoin/escortcoin.conf -datadir=${USERHOME}/.escortcoin stop
 Restart=on-abort
 [Install]
 WantedBy=multi-user.target
 EOL
-sudo systemctl enable guapcoin.service
-sudo systemctl start guapcoin.service
+sudo systemctl enable escortcoin.service
+sudo systemctl start escortcoin.service
 
 clear
 
