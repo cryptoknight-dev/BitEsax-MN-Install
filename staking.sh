@@ -56,6 +56,7 @@ echo "addnode=95.179.155.106" >> escortcoin.conf
 echo "addnode=78.141.208.245" >> escortcoin.conf
 echo "addnode=45.63.41.19" >> escortcoin.conf
 echo "port=9696" >> escortcoin.conf
+echo "txindex=1" >> escortcoin.conf
 mv escortcoin.conf .escortcoin
 
   
