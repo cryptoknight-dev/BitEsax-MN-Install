@@ -83,7 +83,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 clear
 
 # Set these to change the version of bitesax to install
-TARBALLURL="https://github.com/cryptoknight-dev/BitEsax/releases/download/bitesax1.0.0/bitesax-1.0.0-x86_64-linux-QT.gz"
+TARBALLURL="https://github.com/cryptoknight-dev/BitEsax/releases/download/bitesax1.0.0/bitesax-1.0.0-x86_64-linux-gnu.tar.gz"
 TARBALLNAME="bitesax-1.0.0-x86_64-linux-gnu.tar.gz"
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
