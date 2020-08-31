@@ -84,7 +84,7 @@ clear
 
 # Set these to change the version of escortcoin to install
 TARBALLURL="https://github.com/escortcrypto/EscortCoin/releases/download/1.0.0/escortcoin-1.0.0-x86_64-linux-gnu.tar.gz"
-TARBALLNAME="escortcoin-1.0.0-x86_64-linux-gnu.tar.gz"
+TARBALLNAME="bitesax-1.0.0-x86_64-linux-gnu.tar.gz"
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
 BWKVERSION="1.0.0"
