@@ -28,9 +28,9 @@ sudo free
 sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
 cd
 
-wget https://github.com/escortcrypto/EscortCoin/releases/download/1.0.0/escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
-tar -xzf escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
-rm -rf escortcoin-1.0.0-x86_64-linux-gnu.tar.gz
+wget https://github.com/cryptoknight-dev/BitEsax/releases/download/bitesax1.0.0/bitesax-1.0.0-x86_64-linux-gnu.tar.gz
+tar -xzf bitesax-1.0.0-x86_64-linux-gnu.tar.gz
+rm -rf bitesax-1.0.0-x86_64-linux-gnu.tar.gz
 
 sudo apt-get install -y ufw
 sudo ufw allow ssh/tcp
@@ -41,30 +41,29 @@ sudo ufw status
 sudo ufw allow 9696/tcp
   
 cd
-mkdir -p .escortcoin
-echo "staking=1" >> escortcoin.conf
-echo "rpcuser=user"`shuf -i 50000-5000000 -n 1` >> escortcoin.conf
-echo "rpcpassword=pass"`shuf -i 50000-5000000 -n 1` >> escortcoin.conf
-echo "rpcallowip=127.0.0.1" >> escortcoin.conf
-echo "listen=1" >> escortcoin.conf
-echo "server=1" >> escortcoin.conf
-echo "daemon=1" >> escortcoin.conf
-echo "logtimestamps=1" >> escortcoin.conf
-echo "maxconnections=256" >> escortcoin.conf
-echo "addnode=209.250.244.53" >> escortcoin.conf
-echo "addnode=95.179.155.106" >> escortcoin.conf
-echo "addnode=78.141.208.245" >> escortcoin.conf
-echo "addnode=45.63.41.19" >> escortcoin.conf
-echo "port=9696" >> escortcoin.conf
-echo "txindex=1" >> escortcoin.conf
-mv escortcoin.conf .escortcoin
+mkdir -p .bitesax
+echo "staking=1" >> bitesax.conf
+echo "rpcuser=user"`shuf -i 50000-5000000 -n 1` >> bitesax.conf
+echo "rpcpassword=pass"`shuf -i 50000-5000000 -n 1` >> bitesax.conf
+echo "rpcallowip=127.0.0.1" >> bitesax.conf
+echo "listen=1" >> bitesax.conf
+echo "server=1" >> bitesax.conf
+echo "daemon=1" >> bitesax.conf
+echo "logtimestamps=1" >> bitesax.conf
+echo "maxconnections=256" >> bitesax.conf
+echo "addnode=165.22.81.116" >> bitesax.conf
+echo "addnode=165.22.94.252" >> bitesax.conf
+echo "addnode=165.232.114.221" >> bitesax.conf
+echo "port=9696" >> bitesax.conf
+echo "txindex=1" >> bitesax.conf
+mv bitesax.conf .bitesax
 
   
 cd
-./escortcoind -daemon
+./bitesaxd -daemon
 sleep 30
-./escortcoin-cli getinfo
+./bitesax-cli getinfo
 sleep 5
-./escortcoin-cli getnewaddress
-echo "Use the address above to send your EAPC coins to this server"
+./bitesax-cli getnewaddress
+echo "Use the address above to send your BTX coins to this server"
 
