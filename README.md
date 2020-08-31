@@ -16,7 +16,7 @@ The VPS you plan to install your masternode on needs to have at least 1GB of RAM
 
   - The generated address will now be labelled as MN1 If you want to setup more masternodes just repeat the steps so you end up with several addresses for the total number of nodes you wish to setup. Example: For 10 nodes you will need 10 addresses, label them all.
 
-  - Once all addresses are created send 5000 BTX each to them. Ensure that you send exactly 5000 BTX and do it in a single transaction. You can double check where the coins are coming from by checking it via coin control usually, that's not an issue.
+  - Once all addresses are created send 5000 BTEX each to them. Ensure that you send exactly 5000 BTEX and do it in a single transaction. You can double check where the coins are coming from by checking it via coin control usually, that's not an issue.
 
 * As soon as all 5K transactions are done, we will wait for 15 confirmations. You can check this in your wallet or use the explorer. It should take around 30 minutes if all transaction have 15 confirmations
 
@@ -65,7 +65,7 @@ Restart and unlock your wallet.
 SSH (Putty on Windows, Terminal.app on macOS) to your VPS, login as root (**Please note:** It's normal that you don't see your password after typing or pasting it) and run the following command:
 
 ```bash
-bash <( curl https://raw.githubusercontent.com/escortcrypto/EscortCoin-MN-Install/master/install.sh )
+bash <( curl https://raw.githubusercontent.com/cryptoknight-dev/bitesax-MN-Install/master/install.sh )
 ```
 
 When the script asks, confirm your VPS IP Address and paste your masternode key (You can copy your key and paste into the VPS if connected with Putty by right clicking)
