@@ -6,7 +6,7 @@ The VPS you plan to install your masternode on needs to have at least 1GB of RAM
 
 ## Funding your Masternode
 
-* First, we will do the initial collateral TX and send exactly 5000 BTX to one of our addresses. To keep things sorted in case we setup more masternodes we will label the addresses we use.
+* First, we will do the initial collateral TX and send exactly 5000 BTEX to one of our addresses. To keep things sorted in case we setup more masternodes we will label the addresses we use.
 
   - Open your BitEsax wallet and switch to the "Receive" tab.
 
@@ -65,7 +65,7 @@ Restart and unlock your wallet.
 SSH (Putty on Windows, Terminal.app on macOS) to your VPS, login as root (**Please note:** It's normal that you don't see your password after typing or pasting it) and run the following command:
 
 ```bash
-bash <( curl https://raw.githubusercontent.com/cryptoknight-dev/bitesax-MN-Install/master/install.sh )
+bash <( curl https://github.com/cryptoknight-dev/BitEsax-MN-Install/blob/master/install.sh )
 ```
 
 When the script asks, confirm your VPS IP Address and paste your masternode key (You can copy your key and paste into the VPS if connected with Putty by right clicking)
