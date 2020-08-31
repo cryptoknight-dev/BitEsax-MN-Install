@@ -82,8 +82,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 clear
 
-# Set these to change the version of escortcoin to install
-TARBALLURL="https://github.com/escortcrypto/EscortCoin/releases/download/1.0.0/escortcoin-1.0.0-x86_64-linux-gnu.tar.gz"
+# Set these to change the version of bitesax to install
+TARBALLURL="https://github.com/cryptoknight-dev/BitEsax/releases/download/bitesax1.0.0/bitesax-1.0.0-x86_64-linux-QT.gz"
 TARBALLNAME="bitesax-1.0.0-x86_64-linux-gnu.tar.gz"
 BOOTSTRAPURL=""
 BOOTSTRAPARCHIVE=""
@@ -148,13 +148,13 @@ fi
 
 if [[ ("$ADVANCED" == "y" || "$ADVANCED" == "Y") ]]; then
 
-USER=escortcoin
+USER=bitesax
 
 adduser $USER --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password > /dev/null
 
 INSTALLERUSED="#Used Advanced Install"
 
-echo "" && echo 'Added user "escortcoin"' && echo ""
+echo "" && echo 'Added user "bitesax"' && echo ""
 sleep 1
 
 else
@@ -224,22 +224,22 @@ fi
 wget $TARBALLURL
 tar -xzvf $TARBALLNAME 
 rm $TARBALLNAME
-mv ./escortcoind /usr/local/bin
-mv ./escortcoin-cli /usr/local/bin
-mv ./escortcoin-tx /usr/local/bin
+mv ./bitesaxd /usr/local/bin
+mv ./bitesax-cli /usr/local/bin
+mv ./bitesax-tx /usr/local/bin
 rm -rf $TARBALLNAME
 
-# Create .escortcoin directory
-mkdir $USERHOME/.escortcoin
+# Create .bitesax directory
+mkdir $USERHOME/.bitesax
 
 # Install bootstrap file
 if [[ ("$BOOTSTRAP" == "y" || "$BOOTSTRAP" == "Y" || "$BOOTSTRAP" == "") ]]; then
   echo "skipping"
 fi
 
-# Create escortcoin.conf
-touch $USERHOME/.escortcoin/escortcoin.conf
-cat > $USERHOME/.escortcoin/escortcoin.conf << EOL
+# Create bitesax.conf
+touch $USERHOME/.bitesax/bitesax.conf
+cat > $USERHOME/.bitesax/bitesax.conf << EOL
 ${INSTALLERUSED}
 rpcuser=${RPCUSER}
 rpcpassword=${RPCPASSWORD}
@@ -260,27 +260,27 @@ addnode=95.179.155.106
 addnode=78.141.208.245
 addnode=45.63.41.19
 EOL
-chmod 0600 $USERHOME/.escortcoin/escortcoin.conf
-chown -R $USER:$USER $USERHOME/.escortcoin
+chmod 0600 $USERHOME/.bitesax/bitesax.conf
+chown -R $USER:$USER $USERHOME/.bitesax
 
 sleep 1
 
-cat > /etc/systemd/system/escortcoin.service << EOL
+cat > /etc/systemd/system/bitesax.service << EOL
 [Unit]
-Description=escortcoind
+Description=bitesaxd
 After=network.target
 [Service]
 Type=forking
 User=${USER}
 WorkingDirectory=${USERHOME}
-ExecStart=/usr/local/bin/escortcoind -conf=${USERHOME}/.escortcoin/escortcoin.conf -datadir=${USERHOME}/.escortcoin
-ExecStop=/usr/local/bin/escortcoin-cli -conf=${USERHOME}/.escortcoin/escortcoin.conf -datadir=${USERHOME}/.escortcoin stop
+ExecStart=/usr/local/bin/bitesaxd -conf=${USERHOME}/.bitesax/bitesax.conf -datadir=${USERHOME}/.bitesax
+ExecStop=/usr/local/bin/bitesax-cli -conf=${USERHOME}/.bitesax/bitesax.conf -datadir=${USERHOME}/.bitesax stop
 Restart=on-abort
 [Install]
 WantedBy=multi-user.target
 EOL
-sudo systemctl enable escortcoin.service
-sudo systemctl start escortcoin.service
+sudo systemctl enable bitesax.service
+sudo systemctl start bitesax.service
 
 clear
 
