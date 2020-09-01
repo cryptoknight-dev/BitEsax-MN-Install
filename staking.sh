@@ -43,19 +43,15 @@ sudo ufw allow 9696/tcp
 cd
 mkdir -p .bitesax
 echo "staking=1" >> bitesax.conf
-echo "rpcuser=user"`shuf -i 50000-5000000 -n 1` >> bitesax.conf
-echo "rpcpassword=pass"`shuf -i 50000-5000000 -n 1` >> bitesax.conf
+echo "rpcuser=user" >> bitesax.conf
+echo "rpcpassword=pass" >> bitesax.conf
 echo "rpcallowip=127.0.0.1" >> bitesax.conf
 echo "listen=1" >> bitesax.conf
 echo "server=1" >> bitesax.conf
 echo "daemon=1" >> bitesax.conf
-echo "logtimestamps=1" >> bitesax.conf
-echo "maxconnections=256" >> bitesax.conf
 echo "addnode=165.22.81.116" >> bitesax.conf
 echo "addnode=165.22.94.252" >> bitesax.conf
 echo "addnode=165.232.114.221" >> bitesax.conf
-echo "port=9696" >> bitesax.conf
-echo "txindex=1" >> bitesax.conf
 mv bitesax.conf .bitesax
 
   
