@@ -28,9 +28,9 @@ sudo free
 sudo echo "/var/swap.img none swap sw 0 0" >> /etc/fstab
 cd
 
-wget https://github.com/cryptoknight-dev/BitEsax/releases/download/bitesax1.0.0/bitesax-1.0.0-x86_64-linux-gnu.tar.gz
-tar -xzf bitesax-1.0.0-x86_64-linux-gnu.tar.gz
-rm -rf bitesax-1.0.0-x86_64-linux-gnu.tar.gz
+wget https://github.com/cryptoknight-dev/bitesax/releases/download/bitesax1.0.0/bitesax1.0.0-x86_64-linux-gnu.tar.gz
+tar -xzf bitesax1.0.0-x86_64-linux-gnu.tar.gz
+rm -rf bitesax1.0.0-x86_64-linux-gnu.tar.gz
 
 sudo apt-get install -y ufw
 sudo ufw allow ssh/tcp
@@ -38,7 +38,7 @@ sudo ufw limit ssh/tcp
 sudo ufw logging on
 echo "y" | sudo ufw enable
 sudo ufw status
-sudo ufw allow 9696/tcp
+sudo ufw allow 9633/tcp
   
 cd
 mkdir -p .bitesax
